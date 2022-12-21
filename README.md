@@ -1,34 +1,32 @@
-# artus-cli/template
+# artus-cli/plugin-help
 
-template repository for artus-cli
+Built-in plugin for showing help information in artus-cli
 
-<!-- Badge，自行替换掉下面的 `artus-cli/artus-cli` 占位符-->
+[![NPM version](https://img.shields.io/npm/v/@artus-cli/plugin-help.svg?style=flat-square)](https://npmjs.org/package/@artus-cli/plugin-help)
+[![NPM quality](https://img.shields.io/npms-io/final-score/@artus-cli/plugin-help.svg?style=flat-square)](https://npmjs.org/package/@artus-cli/plugin-help)
+[![NPM download](https://img.shields.io/npm/dm/@artus-cli/plugin-help.svg?style=flat-square)](https://npmjs.org/package/@artus-cli/plugin-help)
+[![Continuous Integration](https://github.com/artus-cli/plugin-help/actions/workflows/ci.yml/badge.svg)](https://github.com/artus-cli/plugin-help/actions/workflows/ci.yml)
+[![Test coverage](https://img.shields.io/codecov/c/github/artus-cli/plugin-help.svg?style=flat-square)](https://codecov.io/gh/artus-cli/plugin-help)
+[![Oss Insight Analytics](https://img.shields.io/badge/OssInsight-artus--cli%2Fartus--cli-blue.svg?style=flat-square)](https://ossinsight.io/analyze/artus-cli/plugin-help)
 
-[![NPM version](https://img.shields.io/npm/v/@artus-cli/artus-cli.svg?style=flat-square)](https://npmjs.org/package/@artus-cli/artus-cli)
-[![NPM quality](https://img.shields.io/npms-io/final-score/@artus-cli/artus-cli.svg?style=flat-square)](https://npmjs.org/package/@artus-cli/artus-cli)
-[![NPM download](https://img.shields.io/npm/dm/@artus-cli/artus-cli.svg?style=flat-square)](https://npmjs.org/package/@artus-cli/artus-cli)
-[![Continuous Integration](https://github.com/artus-cli/artus-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/artus-cli/artus-cli/actions/workflows/ci.yml)
-[![Test coverage](https://img.shields.io/codecov/c/github/artus-cli/artus-cli.svg?style=flat-square)](https://codecov.io/gh/artus-cli/artus-cli)
-[![Oss Insight Analytics](https://img.shields.io/badge/OssInsight-artus--cli%2Fartus--cli-blue.svg?style=flat-square)](https://ossinsight.io/analyze/artus-cli/artus-cli)
+## Install
 
+```sh
+$ npm i @artus-cli/plugin-help
+```
 
 ## Usage
 
-```sh
-# print help
-$ my-bin --help
+```typescript
+// plugin.ts
 
-# run dev
-$ my-bin dev --port=8080
+export default {
+  help: {
+    enable: true,
+    package: '@artus-cli/plugin-help',
+  },
+};
 ```
-
-## Commands
-
-### dev
-
-
-### debug
-
 
 ## Contributing
 
