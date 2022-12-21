@@ -19,5 +19,6 @@ export class CovCommand extends TestCommand {
   args: CovOption;
 
   async run() {
+    // nothing
   }
 }

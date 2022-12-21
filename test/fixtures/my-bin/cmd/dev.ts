@@ -34,5 +34,6 @@ export class DevCommand extends Command {
   args: DevOption;
 
   async run() {
+    // nothing
   }
 }

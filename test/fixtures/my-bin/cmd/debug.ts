@@ -20,5 +20,6 @@ export class DebugCommand extends DevCommand {
   args: DebugOption;
 
   async run() {
+    // nothing
   }
 }
