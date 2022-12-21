@@ -1,4 +1,4 @@
-# artus-cli/plugin-help
+# @artus-cli/plugin-help
 
 Built-in plugin for showing help information in artus-cli
 
