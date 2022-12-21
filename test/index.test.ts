@@ -2,8 +2,9 @@ import { run } from './test-utils';
 
 describe('test/index.test.ts', () => {
   it('should --help', async () => {
-    await run('egg-bin', '--help')
+    await run('my-bin', '--help')
       // .debug()
+      .expect('stdout', /Usage: my-bin/)
       .expect('stdout', /Available Commands/)
       .expect('stdout', /help \[command\]\s+show help infomation for command/)
       .expect('stdout', /test \<baseDir\> \[file\.\.\.\]\s+Run the unitest/)
@@ -16,7 +17,7 @@ describe('test/index.test.ts', () => {
   });
 
   it('should subcommand --help', async () => {
-    await run('egg-bin', 'dev -h')
+    await run('my-bin', 'dev -h')
       .debug()
       .expect('stdout', /Available Commands/)
       .notExpect('stdout', /help \[command\]\s+show help infomation for command/)
@@ -31,7 +32,7 @@ describe('test/index.test.ts', () => {
   });
 
   it('should use help command', async () => {
-    await run('egg-bin', 'help')
+    await run('my-bin', 'help')
       // .debug()
       .expect('stdout', /Available Commands/)
       .expect('stdout', /help \[command\]\s+show help infomation for command/)
@@ -43,7 +44,7 @@ describe('test/index.test.ts', () => {
       .expect('stdout', /-h, --help\s+Show Help/)
       .end();
 
-    await run('egg-bin', 'help dev')
+    await run('my-bin', 'help dev')
       // .debug()
       .expect('stdout', /Available Commands/)
       .notExpect('stdout', /help \[command\]\s+show help infomation for command/)
@@ -58,16 +59,31 @@ describe('test/index.test.ts', () => {
   });
 
   it('should show command not found', async () => {
-    await run('egg-bin', 'notexistscommand -h')
+    await run('my-bin', 'notexistscommand -h')
       // .debug()
-      .expect('stderr', /Command not found: 'egg-bin notexistscommand -h'/)
-      .expect('stderr', /try 'egg-bin --help' for more information/)
+      .expect('stderr', /Command not found: 'my-bin notexistscommand -h'/)
+      .expect('stderr', /try 'my-bin --help' for more information/)
       .end();
 
-    await run('egg-bin', 'dev abc bbc')
+    await run('my-bin', 'dev abc bbc')
       // .debug()
-      .expect('stderr', /Command not found: 'egg-bin dev abc bbc'/)
-      .expect('stderr', /try 'egg-bin dev --help' for more information/)
+      .expect('stderr', /Command not found: 'my-bin dev abc bbc'/)
+      .expect('stderr', /try 'my-bin dev --help' for more information/)
+      .end();
+  });
+
+  it('should show help in extends command without error', async () => {
+    await run('other-bin', '-h')
+      // .debug()
+      .expect('stdout', /Usage: other-bin/)
+      .expect('stdout', /Available Commands/)
+      .expect('stdout', /help \[command\]\s+show help infomation for command/)
+      .expect('stdout', /test \<baseDir\> \[file\.\.\.\]\s+Run the unitest/)
+      .expect('stdout', /cov \<baseDir\> \[file\.\.\.\]\s+Run the coverage/)
+      .expect('stdout', /dev \[baseDir\]\s+Run the development server/)
+      .expect('stdout', /debug \[baseDir\]\s+Run the development server at debug mode/)
+      .expect('stdout', /Options/)
+      .expect('stdout', /-h, --help\s+Show Help/)
       .end();
   });
 });
