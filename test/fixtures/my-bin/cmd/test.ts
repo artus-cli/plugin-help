@@ -1,4 +1,4 @@
-import { DefineCommand, DefineOption, Command, Middleware, Option } from '@artus-cli/artus-cli';
+import { DefineCommand, DefineOption, Command, Option } from '@artus-cli/artus-cli';
 
 export interface TestOption extends Option {
   baseDir: string;
