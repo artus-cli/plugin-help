@@ -1,7 +1,7 @@
 {
   "name": "@artus-cli/plugin-help",
   "version": "0.0.1-beta.1",
-  "description": "show help information for artus cli",
+  "description": "show help information for @artus-cli",
   "homepage": "",
   "author": "",
   "main": "dist/index.js",
