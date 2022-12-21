@@ -1,2 +1,1 @@
-export * from './cmd/dev';
-export * from './cmd/debug';
+export * from './help';

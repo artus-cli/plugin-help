@@ -10,6 +10,7 @@ export interface DevOption extends Option {
 @DefineCommand({
   command: 'dev [baseDir]',
   description: 'Run the development server',
+  alias: [ 'd' ],
 })
 export class DevCommand extends Command {
   @DefineOption<DevOption>({
@@ -33,13 +34,6 @@ export class DevCommand extends Command {
   args: DevOption;
 
   async run() {
-    console.info('port', this.args.port);
-    console.info('inspect', this.args.inspect, typeof this.args.inspect);
-    console.info('nodeFlags', this.args.nodeFlags);
-    console.info('baseDir', this.args.baseDir);
-    return {
-      command: 'dev',
-      args: this.args,
-    };
+    // nothing
   }
 }
