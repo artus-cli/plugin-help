@@ -18,20 +18,19 @@ export default class UsageLifecycle implements ApplicationLifecycle {
 
     this.program.use(async (ctx: CommandContext, next) => {
       const { binName: bin } = this.program;
-      const { fuzzyMatched, matched, args, raw } = ctx;
-      if (!fuzzyMatched || !args.help) {
-        if (!matched) {
-          // can not match any command
-          console.error(`\n Command not found: '${bin} ${raw.join(' ')}', try '${fuzzyMatched?.cmds.join(' ') || bin} --help' for more information.\n`);
-          process.exit(1);
-        }
-
-        return next();
+      if (ctx.fuzzyMatched && ctx.args.help) {
+        // redirect to help command
+        const utils = ctx.container.get(Utils);
+        return utils.redirect([ 'help', ctx.fuzzyMatched.uid ]);
       }
 
-      // redirect to help command
-      const utils = ctx.container.get(Utils);
-      await utils.redirect([ 'help', fuzzyMatched.uid ]);
+      try {
+        await next();
+      } catch(e) {
+        // can not match any command
+        console.error(`\n ${e.message}, try '${ctx.fuzzyMatched.cmds.join(' ') || bin} --help' for more information.\n`);
+        process.exit(1);
+      }
     });
   }
 }
