@@ -61,14 +61,14 @@ describe('test/index.test.ts', () => {
   it('should show help info when throw error', async () => {
     await run('my-bin', 'notexistscommand -h')
       .debug()
-      .expect('stderr', /Unknown command/)
+      .expect('stderr', /Command is not found/)
       .expect('stderr', /notexistscommand/)
       .expect('stderr', /try 'my-bin --help' for more information/)
       .end();
 
     await run('my-bin', 'dev abc bbc')
       .debug()
-      .expect('stderr', /Unknown commands/)
+      .expect('stderr', /Command is not found/)
       .expect('stderr', /bbc/)
       .expect('stderr', /try 'my-bin dev --help' for more information/)
       .end();
