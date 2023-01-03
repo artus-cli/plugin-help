@@ -1,9 +1,5 @@
-import { Option, DefineCommand, Command, DefineOption, Inject, CommandContext, Program } from '@artus-cli/artus-cli';
+import { Option, DefineCommand, Command, Inject, CommandContext, Program } from '@artus-cli/artus-cli';
 import commandLineUsage from 'command-line-usage';
-
-interface HelpOption extends Option {
-  command: string;
-}
 
 @DefineCommand({
   command: 'help [command]',
@@ -17,13 +13,13 @@ export class HelpCommand extends Command {
   @Inject()
   program: Program;
 
-  @DefineOption()
-  option: HelpOption;
+  @Option()
+  command: string;
 
   async run() {
     const ctx = this.ctx;
     const { binName: bin } = this.program;
-    const command = this.option.command || bin;
+    const command = this.command || bin;
     const commandUid = command.startsWith(bin) ? command : `${bin} ${command}`;
     const helpCommand = ctx.commands.get(commandUid) || ctx.rootCommand;
 
@@ -64,7 +60,7 @@ export class HelpCommand extends Command {
           const showFlag = flag[0].toLowerCase() + flag.substring(1).replace(/[A-Z]/g, '-$&').toLowerCase();
           return {
             name: showFlag,
-            type: { name: option.type },
+            type: { name: option.type || 'string' },
             description: option.description,
             alias: option.alias,
             defaultValue: option.default,
