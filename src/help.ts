@@ -60,7 +60,7 @@ export class HelpCommand extends Command {
           const showFlag = flag[0].toLowerCase() + flag.substring(1).replace(/[A-Z]/g, '-$&').toLowerCase();
           return {
             name: showFlag,
-            type: { name: option.type },
+            type: { name: option.type || 'string' },
             description: option.description,
             alias: option.alias,
             defaultValue: option.default,
