@@ -1,3 +1,17 @@
+## [1.0.1](https://github.com/artus-cli/plugin-help/compare/v1.0.0...v1.0.1) (2023-01-03)
+
+
+### Bug Fixes
+
+* ci ([#3](https://github.com/artus-cli/plugin-help/issues/3)) ([83c7cb2](https://github.com/artus-cli/plugin-help/commit/83c7cb2aa5a36af9ac4a94d8b373c2f0b6e61044))
+
+
+### Features
+
+* update new artus ([#4](https://github.com/artus-cli/plugin-help/issues/4)) ([11f8440](https://github.com/artus-cli/plugin-help/commit/11f84403c583d4ed8e8d6ef30712b0ef2972698b))
+
+
+
 # 1.0.0 (2022-12-23)
 
 
