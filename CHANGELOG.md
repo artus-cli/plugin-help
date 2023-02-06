@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/artus-cli/plugin-help/compare/v1.0.1...v1.0.2) (2023-02-06)
+
+
+### Bug Fixes
+
+* remove bin ([#5](https://github.com/artus-cli/plugin-help/issues/5)) ([98677c0](https://github.com/artus-cli/plugin-help/commit/98677c01889448750ab2dece781155074aa0aef8))
+
+
+
 ## [1.0.1](https://github.com/artus-cli/plugin-help/compare/v1.0.0...v1.0.1) (2023-01-03)
 
 
