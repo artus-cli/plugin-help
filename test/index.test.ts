@@ -84,7 +84,7 @@ describe('test/index.test.ts', () => {
     await run('my-bin', 'dev --throw')
       .debug()
       .expect('stderr', /custom error/)
-      .expect('stderr', /my-bin\/cmd\/dev\.ts:\d+:\d+/)
+      .expect('stderr', /my-bin[\/\\]cmd[\/\\]dev\.ts:\d+:\d+/)
       .notExpect('stderr', /try 'my-bin dev --help' for more information/)
       .end();
   });
