@@ -19,10 +19,17 @@ export class DevCommand extends Command {
   })
   inspect: boolean;
 
+  @Option({
+    default: false,
+  })
+  throw: boolean;
+
   @Option()
   nodeFlags: string;
 
   async run() {
-    // nothing
+    if (this.throw) {
+      throw new Error('custom error');
+    }
   }
 }

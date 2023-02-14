@@ -1,4 +1,4 @@
-import { Inject, ApplicationLifecycle, LifecycleHook, LifecycleHookUnit, Program, CommandContext, Utils } from '@artus-cli/artus-cli';
+import { Inject, ApplicationLifecycle, LifecycleHook, LifecycleHookUnit, Program, CommandContext, Utils, ArtusCliError } from '@artus-cli/artus-cli';
 
 @LifecycleHookUnit()
 export default class UsageLifecycle implements ApplicationLifecycle {
@@ -27,9 +27,13 @@ export default class UsageLifecycle implements ApplicationLifecycle {
       try {
         await next();
       } catch(e) {
-        // can not match any command
-        console.error(`\n ${e.message}, try '${ctx.fuzzyMatched.cmds.join(' ') || bin} --help' for more information.\n`);
-        process.exit(1);
+        if (e instanceof ArtusCliError) {
+          // built-in error in artus-cli
+          console.error(`\n ${e.message}, try '${ctx.fuzzyMatched.cmds.join(' ') || bin} --help' for more information.\n`);
+          process.exit(1);
+        }
+
+        throw e;
       }
     });
   }

@@ -58,7 +58,7 @@ describe('test/index.test.ts', () => {
       .end();
   });
 
-  it('should show help info when throw error', async () => {
+  it('should show help info when throw built-in error', async () => {
     await run('my-bin', 'notexistscommand -h')
       .debug()
       .expect('stderr', /Command is not found/)
@@ -77,6 +77,15 @@ describe('test/index.test.ts', () => {
       .debug()
       .expect('stderr', /Unknown options: --bbc/)
       .expect('stderr', /try 'my-bin dev --help' for more information/)
+      .end();
+  });
+
+  it('should not show help info when throw custom error', async () => {
+    await run('my-bin', 'dev --throw')
+      .debug()
+      .expect('stderr', /custom error/)
+      .expect('stderr', /my-bin[\/\\]cmd[\/\\]dev\.ts:\d+:\d+/)
+      .notExpect('stderr', /try 'my-bin dev --help' for more information/)
       .end();
   });
 
