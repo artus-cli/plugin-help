@@ -1,13 +1,10 @@
-## [1.0.5](https://github.com/artus-cli/plugin-help/compare/v1.0.3...v1.0.5) (2023-02-28)
+# Changelog
 
+## [1.0.5](https://github.com/artus-cli/plugin-help/compare/v1.0.3...v1.0.5) (2023-02-28)
 
 ### Bug Fixes
 
 * add command-line-usage to dependencies ([#7](https://github.com/artus-cli/plugin-help/issues/7)) ([58e62a3](https://github.com/artus-cli/plugin-help/commit/58e62a3c6f2cf11b8cbfcafa2cb4e0987421cf61))
-
-
-
-# Changelog
 
 ## [1.0.4](https://github.com/artus-cli/plugin-help/compare/v1.0.3...v1.0.4) (2023-02-27)
 
