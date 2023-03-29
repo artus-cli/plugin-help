@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.0](https://github.com/artus-cli/plugin-help/compare/v1.0.5...v1.1.0) (2023-03-29)
+
+### Features
+
+* support print examples ([#8](https://github.com/artus-cli/plugin-help/issues/8)) ([1c74fd9](https://github.com/artus-cli/plugin-help/commit/1c74fd9c7fda8c00db062ca625dbac666b312d15))
+
 ## [1.0.5](https://github.com/artus-cli/plugin-help/compare/v1.0.3...v1.0.5) (2023-02-28)
 
 ### Bug Fixes
@@ -45,7 +51,7 @@
 
 
 
-# 1.0.0 (2022-12-23)
+## 1.0.0 (2022-12-23)
 
 
 ### Bug Fixes
