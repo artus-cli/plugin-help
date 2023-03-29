@@ -19,7 +19,7 @@ describe('test/index.test.ts', () => {
   it('should subcommand --help', async () => {
     await run('my-bin', 'dev -h')
       .debug()
-      .expect('stdout', /Available Commands/)
+      .notExpect('stdout', /Available Commands/)
       .notExpect('stdout', /help \[command\]\s+show help infomation for command/)
       .notExpect('stdout', /test \<baseDir\> \[file\.\.\.\]\s+Run the unitest/)
       .notExpect('stdout', /cov \<baseDir\> \[file\.\.\.\]\s+Run the coverage/)
@@ -46,7 +46,7 @@ describe('test/index.test.ts', () => {
 
     await run('my-bin', 'help dev')
       // .debug()
-      .expect('stdout', /Available Commands/)
+      .notExpect('stdout', /Available Commands/)
       .notExpect('stdout', /help \[command\]\s+show help infomation for command/)
       .notExpect('stdout', /test \<baseDir\> \[file\.\.\.\]\s+Run the unitest/)
       .notExpect('stdout', /cov \<baseDir\> \[file\.\.\.\]\s+Run the coverage/)
@@ -59,7 +59,7 @@ describe('test/index.test.ts', () => {
   });
 
   it('should show help info when throw built-in error', async () => {
-    await run('my-bin', 'notexistscommand -h')
+    await run('my-bin', 'notexistscommand')
       .debug()
       .expect('stderr', /Command is not found/)
       .expect('stderr', /notexistscommand/)
@@ -101,6 +101,35 @@ describe('test/index.test.ts', () => {
       .expect('stdout', /debug \[baseDir\]\s+Run the development server at debug mode/)
       .expect('stdout', /Options/)
       .expect('stdout', /-h, --help\s+Show Help/)
+      .end();
+  });
+
+  it('should show help with no root bin without error', async () => {
+    await run('no-root-bin', '-h')
+      .debug()
+      .expect('stdout', /Usage: noroot/)
+      .expect('stdout', /Available Commands/)
+      .expect('stdout', /dev \[baseDir\]/)
+      .end();
+
+    await run('no-root-bin', 'dev -h')
+      .debug()
+      .expect('stdout', /Usage: noroot dev \[baseDir\]/)
+      .notExpect('stdout', /Available Commands/)
+      .end();
+
+    await run('no-root-bin', 'module -h')
+      .debug()
+      .expect('stdout', /Usage: noroot module <cmd>/)
+      .expect('stdout', /Available Commands/)
+      .expect('stdout', /module dev \[baseDir\]/)
+      .expect('stdout', /module debug \[baseDir\]/)
+      .end();
+  });
+
+  it('should show examples info', async () => {
+    await run('my-bin', 'dev --help')
+      .debug()
       .end();
   });
 });

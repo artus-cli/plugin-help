@@ -29,16 +29,35 @@ export class HelpCommand extends Command {
     const optionKeys = helpCommand.options ? Object.keys(helpCommand.options) : [];
 
     // usage info in first line
-    displayTexts.push(`Usage: ${helpCommand.command.startsWith(bin) ? '' : `${bin} `}${helpCommand.command}`);
+    displayTexts.push(
+      'Usage: ' +
+      (helpCommand.command.startsWith(bin) ? '' : `${bin} `) +
+      helpCommand.command +
+      (helpCommand.isRunable ? '' : ' <cmd>'),
+    );
+
     if (helpCommand.description) {
       displayTexts.push('', helpCommand.description);
+    }
+
+    // show examples
+    if (helpCommand.examples?.length) {
+      commandLineUsageList.push({
+        header: 'Examples',
+        content: helpCommand.examples
+          .map(info => (
+            (info.description ? `# ${info.description}\n` : '') +
+            info.command
+          ))
+          .join('\n\n'),
+      });
     }
 
     // available commands, display all subcommands if match the root command
     const availableCommands = (
       helpCommand.isRoot
         ? Array.from(new Set(ctx.commands.values()))
-        : [ helpCommand ].concat(helpCommand.childs || [])
+        : helpCommand.childs || []
     ).filter(c => !c.isRoot && c.isRunable);
 
     if (availableCommands.length) {
